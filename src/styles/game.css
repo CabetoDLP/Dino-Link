@@ -1,0 +1,83 @@
+
+[id=L],
+[id=R] {
+    animation: leg 0.6s infinite steps(2);
+}
+
+[id=R] {
+    animation-delay: -0.3s;
+}
+
+@keyframes leg {
+    to {
+    transform: translateY(-10%);
+    }
+}
+
+svg {
+    fill: #251d1d;
+}
+
+[id='L'],
+[id='R'] {
+    animation: leg 0.6s infinite steps(2);
+}
+
+[id='R'] {
+    animation-delay: -0.3s;
+}
+
+@keyframes leg {
+    to {
+    transform: translateY(-10%);
+    }
+}
+
+/* Button styles */
+.button-89 {
+    margin-bottom: 20px;
+    width: 200px;
+    height: 100px;
+    --b: 3px; /* border thickness */
+    --s: 0.45em; /* size of the corner */
+    --color: #251d1d;
+    font-family: 'Pixelify Sans', sans-serif;
+    text-align: center;
+    padding: calc(0.5em + var(--s)) calc(0.9em + var(--s));
+    color: var(--color);
+    --_p: var(--s);
+    background: conic-gradient(
+        from 90deg at var(--b) var(--b),
+        #0000 90deg,
+        var(--color) 0
+    )
+    var(--_p) var(--_p) / calc(100% - var(--b) - 2 * var(--_p))
+    calc(100% - var(--b) - 2 * var(--_p));
+    transition: 0.3s linear, color 0s, background-color 0s;
+    outline: var(--b) solid #0000;
+    outline-offset: 0.6em;
+    font-size: 16px;
+
+    border: 0;
+
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.button-89:hover,
+.button-89:focus-visible {
+    --_p: 0px;
+    outline-color: var(--color);
+    outline-offset: 0.05em;
+}
+
+.button-89:active {
+    background: var(--color);
+    color: #fff;
+}
+  
+@keyframes flicker {
+0% { opacity: 0.7; }
+100% { opacity: 1; }
+}
