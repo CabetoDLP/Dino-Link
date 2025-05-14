@@ -77,7 +77,6 @@ export default function Home() {
   const cloudImgRef = useRef<HTMLImageElement | null>(null);
   const cloudsRef = useRef<Cloud[]>([]);
 
-  const [clouds, setClouds] = useState<Cloud[]>([]);
   const [started, setStarted] = useState(false);
   const [cloudImgLoaded, setCloudImgLoaded] = useState(false);
 
@@ -250,7 +249,6 @@ export default function Home() {
     };
     
     cloudsRef.current = [...cloudsRef.current, newCloud];
-    setClouds(prev => [...prev, newCloud]);
   };
 
   // Función para actualizar nubes
@@ -263,8 +261,6 @@ export default function Home() {
         x: cloud.x - cloud.speed * deltaTimeRef.current 
       }))
       .filter(cloud => cloud.x + cloud.width > 0);
-    
-    setClouds([...cloudsRef.current]);
 
     cloudSpawnTimerRef.current += deltaTimeRef.current;
     if (cloudSpawnTimerRef.current >= 150) {
@@ -306,7 +302,6 @@ export default function Home() {
     if (started && cloudImgLoaded) {
       // Limpiar nubes existentes
       cloudsRef.current = [];
-      setClouds([]);
       
       // Iniciar con 3 nubes distribuidas aleatoriamente
       for (let i = 0; i < 3; i++) {
@@ -331,7 +326,6 @@ export default function Home() {
   }, [score, started]); // Depende de score para triggerear el efecto
 
   const obstaclesRef = useRef<Obstacle[]>([]);
-  const [obstacles, setObstacles] = useState<Obstacle[]>([]);
   const obstacleTimerRef = useRef(0);
 
   useEffect(() => {
@@ -340,9 +334,7 @@ export default function Home() {
     // Limpiar estado anterior
     if (gameOverRef.current) {
       obstaclesRef.current = [];
-      setObstacles([]);
       cloudsRef.current = [];
-      setClouds([]);
       floorXRef.current = 0;
       frameRef.current = 0;
     }
@@ -511,8 +503,6 @@ export default function Home() {
           img,
         });
       }
-
-      setObstacles([...obstaclesRef.current]);
     };
 
     const drawObstacles = (ctx: CanvasRenderingContext2D) => {
@@ -592,8 +582,6 @@ export default function Home() {
         return newObs;
       })
       .filter(obs => obs.x + obs.width > 0);
-    
-    setObstacles([...obstaclesRef.current]);
     
     // Gestión del temporizador de obstáculos
     obstacleTimerRef.current += deltaTimeRef.current;
@@ -726,9 +714,7 @@ export default function Home() {
               setScore(0);
               scoreRef.current = 0;
               obstaclesRef.current = [];
-              setObstacles([]);
               cloudsRef.current = [];
-              setClouds([]);
               floorXRef.current = 0;
               frameRef.current = 0;
               
